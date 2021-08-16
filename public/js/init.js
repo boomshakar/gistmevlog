@@ -22,6 +22,8 @@ list.forEach((element) => element.addEventListener("click", activelink));
 //   };
 // }
 
+
+
 // Carousel-
 $(document).ready(() => {
   // // active tab

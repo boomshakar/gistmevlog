@@ -1009,19 +1009,22 @@ footer.footer .move-up span:hover {
 .signin-signup {
   width: 100%;
 }
-form {
+.contain-flu form,
+.contain-flu-reg form {
   display: flex;
   padding: 0 5rem;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
-form > .title {
+.contain-flu form > .title,
+.contain-flu-reg form > .title {
   font-size: 2rem;
   color: var(--write);
   margin-bottom: 10px;
 }
-form > .input-field {
+.contain-flu form > .input-field,
+.contain-flu-reg form > .input-field {
   max-width: 380px;
   width: 100%;
   height: 55px;
@@ -1033,12 +1036,14 @@ form > .input-field {
   padding: 0.5rem;
   color: #a9a9a9;
 }
-form > .input-field i {
+.contain-flu form > .input-field i,
+.contain-flu-reg form > .input-field i {
   text-align: center;
   line-height: 35px;
   font-size: 1.1rem;
 }
-form > .input-field input {
+.contain-flu form > .input-field input,
+.contain-flu-reg form > .input-field input {
   background: none;
   outline: none;
   border: none;
@@ -1047,11 +1052,13 @@ form > .input-field input {
   font-size: 1.1rem;
   color: var(--write);
 }
-form > .input-field input::placeholder {
+.contain-flu form > .input-field input::placeholder,
+.contain-flu-reg form > .input-field input::placeholder {
   color: #a9a9a9;
   font-weight: 500;
 }
-.btn {
+.contain-flu .btn,
+.contain-flu-reg .btn {
   width: 150px;
   height: 49px;
   border: none;
@@ -1064,19 +1071,24 @@ form > .input-field input::placeholder {
   margin: 10px 0;
   transition: 0.5s;
 }
-.btn:hover {
+.contain-flu .btn:hover,
+.contain-flu-reg .btn:hover {
   background: #008188 !important;
   color: var(--write);
 }
-form > .social-text {
+.contain-flu form > .social-text,
+.contain-flu-reg form > .social-text {
   padding: 0.7rem 0;
   font-size: 1rem;
+  color: var(--write);
 }
-form > .social-media {
+.contain-flu form > .social-media,
+.contain-flu-reg form > .social-media {
   display: flex;
   justify-content: center;
 }
-form > .social-media > .social-icon {
+.contain-flu form > .social-media > .social-icon,
+.contain-flu-reg form > .social-media > .social-icon {
   width: 46px;
   height: 46px;
   border: 1px solid var(--dark-lt);
@@ -1090,7 +1102,8 @@ form > .social-media > .social-icon {
   border-radius: 50%;
   transition: 0.3s;
 }
-form > .social-media > .social-icon:hover {
+.contain-flu form > .social-media > .social-icon:hover,
+.contain-flu-reg form > .social-media > .social-icon:hover {
   color: var(--blue);
   border-color: var(--blue);
 }
@@ -1200,6 +1213,43 @@ form > .social-media > .social-icon:hover {
 }
 /* signup */
 
+/* Admin Page */
+/* Post-index */
+.container .admin-post-section1 {
+  height: 100vh;
+  position: relative;
+}
+.admin-post-section1 .table-responsive > table .post-table-action .btn {
+  margin: 0 1rem;
+}
+.container .admin-post-section1 .fixed-action-btn {
+  position: fixed;
+  bottom: 1vh;
+  right: 1vw;
+}
+.container .admin-post-section1 .fixed-action-btn button {
+  outline: none;
+  border: none;
+  /* padding: 0.5rem 0.7rem 0.2rem 0.7rem !important;
+  background: var(--dark-lt); */
+}
+.container .admin-post-section1 .fixed-action-btn i {
+  font-size: 3.5em;
+  color: var(--blue);
+  outline: none;
+}
+.container .admin-add-post-section1 .add-post-form {
+  margin: 1.5rem 2rem;
+  padding: 1rem;
+}
+.cke_contents > iframe {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Admin Page */
+
+/* Responsive */
 @media (max-width: 870px) {
   .contain-flu {
     min-height: 800px;

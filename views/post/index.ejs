@@ -1,0 +1,54 @@
+<div class="admin-post-section1">
+  <h6>Dashboard</h6>
+  <h3>Welcome NAME</h3>
+  <p>Here are your stories</p>
+  <div class="table-responsive">
+    <table
+      class="
+        table table-info table-striped table-bordered table-hover
+        caption-top
+      "
+    >
+      <caption>
+        List of Post by USER
+      </caption>
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Title</th>
+          <th scope="col">Date</th>
+          <th scope="col">Status</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td><a href="/stories/{{ _id }}">TITLE</a></td>
+          <td>DATE</td>
+          <td><span class="dash-status">STATUS</span></td>
+          <td class="post-table-action flex-row">
+            <form action="/posts/edit/{{ _id }}" method="get">
+              <button class="btn btn-info" type="submit">
+                <i class="fas fa-edit"></i>
+              </button>
+            </form>
+            <form action="/posts/{{ _id }}" method="POST" id="delete-form">
+              <input type="hidden" name="_method" value="DELETE" />
+              <button class="btn btn-danger" type="submit">
+                <i class="fas fa-trash"></i>
+              </button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fixed-action-btn">
+    <form action="/posts/add" method="get">
+      <button type="submit">
+        <i class="fas fa-plus-circle" title="Add New Post"></i>
+      </button>
+    </form>
+  </div>
+</div>

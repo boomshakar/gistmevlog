@@ -46,7 +46,7 @@ passport.use(
   )
 );
 
-const User = require("../model/userpack/userModel");
+const User = require("../model/User");
 
 // for unique coookie identification
 // passport.serializeUser((user, done) => {

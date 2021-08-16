@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const storySchema = new mongoose.Schema({
+const postSchema = new mongoose.Schema({
   title: {
     type: String,
     required: true,
     trim: true,
   },
-  body: {
+  postbody: {
     type: String,
     required: true,
   },
@@ -15,9 +15,18 @@ const storySchema = new mongoose.Schema({
     default: "public",
     enum: ["public", "private"],
   },
+  category: {
+    type: String,
+    default: "general",
+    enum: ["general", "webdesign", "technology", "lifestyle", "photography"],
+  },
   user: {
     type: mongoose.Schema.Types.ObjectId, //connecting it to the user schema to get the user specific id
     ref: "User",
+  },
+  postimg: {
+    data: Buffer,
+    contentType: String,
   },
   createdAt: {
     type: Date,
@@ -25,5 +34,5 @@ const storySchema = new mongoose.Schema({
   },
 });
 
-const Story = new mongoose.model("Story", storySchema);
-module.exports = Story;
+const Post = new mongoose.model("Post", postSchema);
+module.exports = Post;
