@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 // GET /dashboard
 router.get("/dashboard", ensureAuth, async (req, res) => {
   try {
-    res.render("dashboard", { name: "NotYet" });
+    res.render("dashboard", { name: req.user.firstname });
   } catch (error) {
     console.error(error);
   }

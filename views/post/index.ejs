@@ -22,18 +22,22 @@
         </tr>
       </thead>
       <tbody>
+        <% function formatDate(date) { %>
+         <% return new Date(date).toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' }).replace(" ","-" ); %>
+        <% } %> 
+        <% stories.forEach((element, index) => { %>
         <tr>
-          <th scope="row">1</th>
-          <td><a href="/stories/{{ _id }}">TITLE</a></td>
-          <td>DATE</td>
-          <td><span class="dash-status">STATUS</span></td>
+          <th scope="row"><%= ++index %></th>
+          <td><a href="/posts/{{ _id }}"><%= element.title %></a></td>
+          <td><%= formatDate(element.createdAt) %></td>
+          <td><span class="dash-status"><%= element.status %></span></td>
           <td class="post-table-action flex-row">
-            <form action="/posts/edit/{{ _id }}" method="get">
+            <form action="/posts/edit/<%= element._id %>" method="get">
               <button class="btn btn-info" type="submit">
                 <i class="fas fa-edit"></i>
               </button>
             </form>
-            <form action="/posts/{{ _id }}" method="POST" id="delete-form">
+            <form action="/posts/<%= element._id %>" method="POST" id="delete-form">
               <input type="hidden" name="_method" value="DELETE" />
               <button class="btn btn-danger" type="submit">
                 <i class="fas fa-trash"></i>
@@ -41,6 +45,7 @@
             </form>
           </td>
         </tr>
+        <% }) %>
       </tbody>
     </table>
   </div>

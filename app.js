@@ -31,7 +31,7 @@ require("./config/googlepass");
 const app = express();
 
 // Body Parser
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 // Method override middleware
@@ -68,45 +68,47 @@ app.use(
     },
   })
 );
-// storing uploaded files
-const storedFile = multer.diskStorage({
-  destination:(req,file, cb)=>{
-    bc(null, "uploads")
-  },
-  filename:(req,file,cb)=>{
-    cb(null,fieldname + "-" + Date.now() + path.extname(file.originalname))
-  }
-});
-const upload = multer({storage: storedFile})
 
-// Initialize grid fs
-const conn = mongoose.createConnection( process.env.MONGO_URI);
-let gfs;
-// initialize stream
-conn.once('open',  ()=> {
-  gfs = Grid(conn.db, mongoose.mongo);
-  gfs.collection("uploads");
-})
 
-// create storagge engine
-const storage = new GridFsStorage({
-  url: process.env.MONGO_URI,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = buf.toString('hex') + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads'
-        };
-        resolve(fileInfo);
-      });
-    });
-  }
-});
+// // storing uploaded files
+// const storedFile = multer.diskStorage({
+//   destination:(req,file, cb)=>{
+//     bc(null, "uploads")
+//   },
+//   filename:(req,file,cb)=>{
+//     cb(null,fieldname + "-" + Date.now() + path.extname(file.originalname))
+//   }
+// });
+// const upload = multer({storage: storedFile})
+
+// // Initialize grid fs
+// const conn = mongoose.createConnection( process.env.MONGO_URI);
+// let gfs;
+// // initialize stream
+// conn.once('open',  ()=> {
+//   gfs = Grid(conn.db, mongoose.mongo);
+//   gfs.collection("uploads");
+// })
+
+// // create storagge engine
+// const storage = new GridFsStorage({
+//   url: process.env.MONGO_URI,
+//   file: (req, file) => {
+//     return new Promise((resolve, reject) => {
+//       crypto.randomBytes(16, (err, buf) => {
+//         if (err) {
+//           return reject(err);
+//         }
+//         const filename = buf.toString('hex') + path.extname(file.originalname);
+//         const fileInfo = {
+//           filename: filename,
+//           bucketName: 'uploads'
+//         };
+//         resolve(fileInfo);
+//       });
+//     });
+//   }
+// });
 
 // Passport middleware
 //Initialize and start using passport.js

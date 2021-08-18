@@ -24,7 +24,46 @@ const userSchema = new mongoose.Schema({
     default: Date.now,
   },
   lastVisited: { type: Date, default: new Date() },
+  stories: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Post",
+  },
 });
 
-const User = new mongoose.model("User", userSchema);
-module.exports = User;
+const postSchema = new mongoose.Schema({
+  title: {
+    type: String,
+    required: true,
+    trim: true,
+  },
+  postbody: {
+    type: String,
+    required: true,
+  },
+  status: {
+    type: String,
+    default: "public",
+    enum: ["public", "private"],
+  },
+  category: {
+    type: String,
+    default: "general",
+    enum: ["general", "webdesign", "technology", "lifestyle", "photography"],
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
+  postimg: {
+    data: Buffer,
+    contentType: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
+
+const Post =  mongoose.model("Post", postSchema);
+const User =  mongoose.model("User", userSchema);
+module.exports = {User, Post};

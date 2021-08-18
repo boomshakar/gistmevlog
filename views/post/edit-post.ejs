@@ -1,42 +1,58 @@
 <div class="admin-edit-post-section1">
-  <h3>Edit Story</h3>
-  <div class="row">
-    <form action="/stories/{{ story._id }}" method="POST" class="col s12">
-      <input type="hidden" name="_method" value="PUT" />
-      <div class="row">
-        <div class="input-field">
-          <input
-            type="text"
-            id="title"
-            name="title"
-            value="{{ story.title }}"
-          />
-          <label for="title">Title</label>
-        </div>
+  <div class="add-post-form">
+    <h3>Edit Story</h3>
+    <form action="/posts/<%= story._id %> " id="saveForm" method="post" enctype="application/x-www-form-urlencoded"></form>
+    <form action="/posts/<%= story._id %>" id="mediaForm" method="post" enctype="multipart/form-data"></form>
+    <form action="/posts" id="cancelForm" method="get"></form>
+    <input type="hidden" name="_method" value="PUT"  form="saveForm"/>
+    <input type="hidden" name="_method" value="PUT"  form="mediaForm"/>
+    
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          id="title"
+          name="title" form="saveForm"
+          aria-describedby="titlelHelp"
+          value="<%= story.title %> "
+        />
+        <div id="titleHelp" class="form-text">This is your main title</div>
       </div>
-      <div class="row">
-        {{! This row needs to e initialized in the init.js to show }}
-        <div class="input-field">
-          <select name="status" id="status">
-            {{#select story.status}}
-            <option value="public" selected>Public</option>
-            <option value="private">Private</option>
-            {{/select}}
-          </select>
-          <label for="status">Status</label>
-        </div>
+      
+      <div class="mb-3">
+        <label for="postimg" class="form-label">Post Image</label>
+        <input class="form-control" form="mediaForm" type="file" id="postimg" name="postimg"
+        value="<%= story.postimg %> ">
       </div>
-      <div class="row">
-        <div class="input-field">
-          <h5>Tell Us Your Story</h5>
-          {{! Will be designed by CK editor js cdn and initialized in the init.js }}
-          <textarea name="body" id="body">{{ story.body }}</textarea>
-        </div>
+      <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <select class="form-select mb-3" name="status" id="status" form="saveForm">
+            <option value="public" <%= story.status == "public" ? 'selected':'' %>>Public</option>
+            <option value="private" <%= story.status == "private" ? 'selected':'' %>>Private</option>
+        </select>
       </div>
-      <div class="row">
-        <input type="submit" value="Save" class="btn" />
-        <a href="/dashboard" class="btn orange">Cancel</a>
+      <div class="mb-3">
+        <label for="category" class="form-label">Category</label>
+        <select class="form-select mb-3" name="category" id="category" form="saveForm">
+          <option value="general" <%= story.category == "general" ? 'selected':'' %> >General</option>
+          <option value="webdesign" <%= story.category == "webdesign" ? 'selected':'' %>>Web Design</option>
+          <option value="technology" <%= story.category == "technology" ? 'selected':'' %>>Technology</option>
+          <option value="lifestyle" <%= story.category == "lifestyle" ? 'selected':'' %>>Lifestyle</option>
+          <option value="photography" <%= story.category == "photography" ? 'selected':'' %>>Photography</option>
+        </select>
       </div>
-    </form>
+      <div class="mb-3">
+        <label for="postbody">Tell Us Your Story</label>
+        <textarea class="form-control" name="postbody" id="postbody" form="saveForm"><%= story.postbody %></textarea>
+        <%# <input type="hidden" name="user" id="user" form="saveForm"> %> 
+      </div>
+      <button type="submit" class="btn btn-info" form="saveForm">Save</button>
+      <button type="submit" class="btn btn-danger" form="cancelForm">
+        Cancel
+      </button>
+      <script>
+        CKEDITOR.replace("postbody");
+      </script>
   </div>
 </div>

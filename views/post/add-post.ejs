@@ -1,9 +1,10 @@
 <div class="admin-add-post-section1">
   <div class="add-post-form">
     <h3>Add Post</h3>
-    <form action="/posts" id="saveForm" method="post" enctype="multipart/form-data"></form>
+    <form action="/posts" id="saveForm" method="post" enctype="application/x-www-form-urlencoded"></form>
+    <form action="/posts" id="mediaForm" method="post" enctype="multipart/form-data"></form>
     <form action="/posts" id="cancelForm" method="get"></form>
-    <div class="mb-3" form="saveForm">
+    <div class="mb-3">
       <label for="title" class="form-label">Title</label>
       <input
         type="text"
@@ -14,20 +15,18 @@
       />
       <div id="titleHelp" class="form-text">This is your main title</div>
     </div>
-    <div class="mb-3" form="saveForm">
+    <div class="mb-3">
       <label for="postimg" class="form-label">Post Image</label>
-      <input class="form-control" form="saveForm" type="file" id="postimg" name="postimg">
+      <input class="form-control" form="mediaForm" type="file" id="postimg" name="postimg">
     </div>
-    <div class="mb-3" form="saveForm">
+    <div class="mb-3">
       <label for="status" class="form-label">Status</label>
       <select class="form-select mb-3" name="status" id="status" form="saveForm">
         <option value="public" selected>Public</option>
         <option value="private">Private</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
       </select>
     </div>
-    <div class="mb-3" form="saveForm">
+    <div class="mb-3">
       <label for="category" class="form-label">Category</label>
       <select class="form-select mb-3" name="category" id="category" form="saveForm">
         <option value="general" selected>General</option>
@@ -37,9 +36,10 @@
         <option value="photography">Photography</option>
       </select>
     </div>
-    <div class="mb-3" form="saveForm">
+    <div class="mb-3">
       <label for="postbody">Tell Us Your Story</label>
       <textarea class="form-control" name="postbody" id="postbody" form="saveForm"></textarea>
+      <%#<input type="hidden" name="user" id="user" form="saveForm">%>
     </div>
     <button type="submit" class="btn btn-primary" form="saveForm">Save</button>
     <button type="submit" class="btn btn-danger" form="cancelForm">

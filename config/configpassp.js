@@ -1,5 +1,5 @@
 const passport = require("passport");
-const User = require("../model/User");
+const {User} = require("../model/User");
 
 // for unique coookie identification
 passport.serializeUser((user, done) => {
